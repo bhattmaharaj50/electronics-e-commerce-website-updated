@@ -6,34 +6,36 @@ interface CountdownTimerProps {
   targetDate: string
 }
 
-export function CountdownTimer({ targetDate }: CountdownTimerProps) {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft())
-
-  function getTimeLeft() {
-    const diff = new Date(targetDate).getTime() - Date.now()
-    if (diff <= 0) return { hours: 0, minutes: 0, seconds: 0 }
-    return {
-      hours: Math.floor(diff / (1000 * 60 * 60)),
-      minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-      seconds: Math.floor((diff % (1000 * 60)) / 1000),
-    }
+function getTimeLeft(targetDate: string) {
+  const diff = new Date(targetDate).getTime() - Date.now()
+  if (diff <= 0) return { hours: 0, minutes: 0, seconds: 0 }
+  return {
+    hours: Math.floor(diff / (1000 * 60 * 60)),
+    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((diff % (1000 * 60)) / 1000),
   }
+}
+
+export function CountdownTimer({ targetDate }: CountdownTimerProps) {
+  const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number } | null>(null)
 
   useEffect(() => {
+    setTimeLeft(getTimeLeft(targetDate))
     const interval = setInterval(() => {
-      setTimeLeft(getTimeLeft())
+      setTimeLeft(getTimeLeft(targetDate))
     }, 1000)
     return () => clearInterval(interval)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetDate])
+
+  const display = timeLeft ?? { hours: 0, minutes: 0, seconds: 0 }
 
   return (
     <div className="flex items-center gap-1">
-      <TimeBlock value={timeLeft.hours} label="HRS" />
+      <TimeBlock value={display.hours} label="HRS" />
       <span className="text-xs font-bold text-sale">:</span>
-      <TimeBlock value={timeLeft.minutes} label="MIN" />
+      <TimeBlock value={display.minutes} label="MIN" />
       <span className="text-xs font-bold text-sale">:</span>
-      <TimeBlock value={timeLeft.seconds} label="SEC" />
+      <TimeBlock value={display.seconds} label="SEC" />
     </div>
   )
 }
