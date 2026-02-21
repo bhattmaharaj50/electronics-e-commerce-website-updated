@@ -11657,6 +11657,6 @@ export const products: Product[] = [
     featured: false,
     flashSale: false,
     dealOfDay: false,
-  },
+  }
 
 
