@@ -11671,3 +11671,34 @@ export function formatPrice(value: number): string {
   return `KES ${value.toLocaleString()}`;
 }
 
+
+export function getDealOfDayProducts() {
+  return products.filter((p) => p.dealOfDay);
+}
+
+export function getFeaturedProducts() {
+  return products.filter((p) => p.featured);
+}
+
+export function getFlashSaleProducts() {
+  return products.filter((p) => p.flashSale);
+}
+
+export function getProductsByCategory(categorySlug: string) {
+  return products.filter((p) => p.category === categorySlug);
+}
+
+export function getProductBySlug(slug: string) {
+  return products.find((p) => p.slug === slug);
+}
+
+export function searchProducts(query: string) {
+  const q = query.toLowerCase();
+  return products.filter(
+    (p) =>
+      p.name.toLowerCase().includes(q) ||
+      p.brand.toLowerCase().includes(q) ||
+      p.category.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q)
+  );
+}
