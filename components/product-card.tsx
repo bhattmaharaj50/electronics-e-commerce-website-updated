@@ -10,14 +10,14 @@ export function ProductCard({ product }: { product: Product }) {
     : 0
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+    <div className="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-muted-foreground/30">
       {discount > 0 && (
-        <span className="absolute left-2 top-2 z-10 rounded bg-sale px-2 py-0.5 text-xs font-bold text-foreground">
+        <span className="absolute left-2 top-2 z-10 rounded bg-foreground px-2 py-0.5 text-xs font-bold text-background">
           -{discount}%
         </span>
       )}
       {product.flashSale && (
-        <span className="absolute right-2 top-2 z-10 rounded bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
+        <span className="absolute right-2 top-2 z-10 rounded border border-border bg-secondary px-2 py-0.5 text-xs font-bold text-foreground">
           Flash Sale
         </span>
       )}
@@ -36,7 +36,7 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="flex flex-1 flex-col gap-2 p-3">
         <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{product.brand}</p>
         <Link href={`/product/${product.slug}`}>
-          <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-card-foreground transition-colors hover:text-primary">
+          <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-card-foreground transition-colors hover:text-muted-foreground">
             {product.name}
           </h3>
         </Link>
@@ -45,7 +45,7 @@ export function ProductCard({ product }: { product: Product }) {
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
-              className={`h-3.5 w-3.5 ${i < Math.round(product.rating) ? "fill-primary text-primary" : "fill-muted text-muted"}`}
+              className={`h-3.5 w-3.5 ${i < Math.round(product.rating) ? "fill-foreground text-foreground" : "fill-secondary text-secondary"}`}
             />
           ))}
           <span className="ml-1 text-xs text-muted-foreground">({product.reviewCount})</span>
@@ -65,15 +65,15 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="flex items-center gap-2">
           <Link
             href={`/product/${product.slug}`}
-            className="flex-1 rounded-md bg-secondary py-2 text-center text-xs font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
+            className="flex-1 rounded-md border border-border bg-secondary py-2 text-center text-xs font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
           >
             View Details
           </Link>
           <a
-            href={getWhatsAppLink(product.name)}
+            href={getWhatsAppLink(product.name, 1, product.price)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 rounded-md bg-whatsapp px-3 py-2 text-xs font-bold text-whatsapp-foreground transition-colors hover:bg-whatsapp/90"
+            className="flex items-center gap-1 rounded-md bg-foreground px-3 py-2 text-xs font-bold text-background transition-colors hover:bg-foreground/90"
           >
             <WhatsAppIcon className="h-3.5 w-3.5" />
             Buy
@@ -81,7 +81,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         {!product.inStock && (
-          <span className="text-xs font-medium text-sale">Out of Stock</span>
+          <span className="text-xs font-medium text-muted-foreground">Out of Stock</span>
         )}
       </div>
     </div>

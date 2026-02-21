@@ -69,7 +69,7 @@ export function CategoryContent({ category, products }: CategoryContentProps) {
                 type="checkbox"
                 checked={selectedBrands.includes(brand)}
                 onChange={() => toggleBrand(brand)}
-                className="h-4 w-4 rounded border-border bg-secondary accent-primary"
+                className="h-4 w-4 rounded border-border bg-secondary accent-foreground"
               />
               <span className="text-sm text-muted-foreground">{brand}</span>
             </label>
@@ -106,13 +106,13 @@ export function CategoryContent({ category, products }: CategoryContentProps) {
               key={r}
               onClick={() => setMinRating(minRating === r ? 0 : r)}
               className={`flex items-center gap-1 rounded-md px-2 py-1.5 text-left text-sm transition-colors ${
-                minRating === r ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-secondary"
+                minRating === r ? "bg-secondary text-foreground" : "text-muted-foreground hover:bg-secondary"
               }`}
             >
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star
                   key={i}
-                  className={`h-3.5 w-3.5 ${i < r ? "fill-primary text-primary" : "fill-muted text-muted"}`}
+                  className={`h-3.5 w-3.5 ${i < r ? "fill-foreground text-foreground" : "fill-secondary text-secondary"}`}
                 />
               ))}
               <span className="ml-1">& up</span>
@@ -150,7 +150,7 @@ export function CategoryContent({ category, products }: CategoryContentProps) {
           <SlidersHorizontal className="h-4 w-4" />
           Filters
           {activeFilterCount > 0 && (
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-foreground text-xs font-bold text-background">
               {activeFilterCount}
             </span>
           )}
@@ -195,7 +195,7 @@ export function CategoryContent({ category, products }: CategoryContentProps) {
               <p className="mt-1 text-sm text-muted-foreground">Try adjusting your filters</p>
               <button
                 onClick={clearFilters}
-                className="mt-4 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+                className="mt-4 rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background"
               >
                 Clear Filters
               </button>

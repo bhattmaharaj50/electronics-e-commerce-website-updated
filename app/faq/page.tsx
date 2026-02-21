@@ -3,6 +3,7 @@ import { Truck, Shield, CreditCard, HelpCircle, Clock, MapPin, Phone, MessageCir
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { WhatsAppIcon } from "@/components/whatsapp-icon"
+import { WHATSAPP_NUMBER } from "@/lib/data"
 
 export const metadata: Metadata = {
   title: "Delivery & Warranty FAQ - 25FlowElectronics",
@@ -82,8 +83,8 @@ export default function FAQPage() {
           <div className="mb-12 grid gap-4 sm:grid-cols-2">
             {deliveryInfo.map((info) => (
               <div key={info.title} className="rounded-lg border border-border bg-card p-5">
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                  <info.icon className="h-5 w-5 text-primary" />
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-secondary">
+                  <info.icon className="h-5 w-5 text-foreground" />
                 </div>
                 <h3 className="mb-1 font-semibold text-card-foreground">{info.title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{info.description}</p>
@@ -92,9 +93,9 @@ export default function FAQPage() {
           </div>
 
           {/* M-Pesa Steps */}
-          <div className="mb-12 rounded-lg border border-primary/20 bg-primary/5 p-6">
+          <div className="mb-12 rounded-lg border border-border bg-card p-6">
             <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-foreground">
-              <CreditCard className="h-5 w-5 text-primary" />
+              <CreditCard className="h-5 w-5 text-foreground" />
               How to Pay via M-Pesa
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -105,7 +106,7 @@ export default function FAQPage() {
                 { step: 4, title: "Confirm & Deliver", desc: "Share screenshot & provide delivery address" },
               ].map((s) => (
                 <div key={s.step} className="flex flex-col items-center text-center">
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-lg font-bold text-background">
                     {s.step}
                   </div>
                   <h4 className="text-sm font-semibold text-foreground">{s.title}</h4>
@@ -118,13 +119,13 @@ export default function FAQPage() {
           {/* FAQ */}
           <div className="mb-12">
             <h2 className="mb-6 flex items-center gap-2 text-xl font-bold text-foreground">
-              <HelpCircle className="h-5 w-5 text-primary" />
+              <HelpCircle className="h-5 w-5 text-foreground" />
               Frequently Asked Questions
             </h2>
             <div className="flex flex-col gap-3">
               {faqs.map((faq, i) => (
                 <details key={i} className="group rounded-lg border border-border bg-card">
-                  <summary className="cursor-pointer px-5 py-4 text-sm font-semibold text-card-foreground transition-colors hover:text-primary">
+                  <summary className="cursor-pointer px-5 py-4 text-sm font-semibold text-card-foreground transition-colors hover:text-muted-foreground">
                     {faq.q}
                   </summary>
                   <div className="border-t border-border px-5 py-4 text-sm leading-relaxed text-muted-foreground">
@@ -141,10 +142,10 @@ export default function FAQPage() {
             <p className="mb-6 text-muted-foreground">Our team is available to help you via WhatsApp</p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://wa.me/254XXXXXXXXX?text=Hello%2025FlowElectronics!%20I%20have%20a%20question."
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello 25FlowElectronics! I have a question.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-whatsapp px-6 py-3 font-bold text-whatsapp-foreground transition-colors hover:bg-whatsapp/90"
+                className="inline-flex items-center gap-2 rounded-lg bg-foreground px-6 py-3 font-bold text-background transition-colors hover:bg-foreground/90"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 Chat on WhatsApp

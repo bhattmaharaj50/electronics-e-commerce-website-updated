@@ -1,10 +1,12 @@
 import type { Product, Category } from "./types"
 
-export const WHATSAPP_NUMBER = "254XXXXXXXXX"
+export const WHATSAPP_NUMBER = "254793823013"
 
-export function getWhatsAppLink(productName: string) {
+export function getWhatsAppLink(productName: string, quantity: number = 1, totalPrice?: number) {
+  const priceText = totalPrice ? ` | Total: KES ${totalPrice.toLocaleString("en-KE")}` : ""
+  const qtyText = quantity > 1 ? ` x${quantity}` : ""
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    `Hello I want to buy ${productName} from 25FlowElectronics. How do I pay via M-Pesa?`
+    `Hello 25FlowElectronics! I want to order:\n\nProduct: ${productName}${qtyText}${priceText}\n\nPlease send me M-Pesa payment details.`
   )}`
 }
 

@@ -9,8 +9,8 @@ export function FeaturedProducts() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-10">
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-1.5">
-          <Sparkles className="h-5 w-5 text-primary" />
+        <div className="flex items-center gap-2 rounded-lg border border-border bg-secondary px-3 py-1.5">
+          <Sparkles className="h-5 w-5 text-foreground" />
           <h2 className="text-xl font-bold text-foreground">Featured Products</h2>
         </div>
       </div>

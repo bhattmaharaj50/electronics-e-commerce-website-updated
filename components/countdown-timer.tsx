@@ -32,9 +32,9 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
   return (
     <div className="flex items-center gap-1">
       <TimeBlock value={display.hours} label="HRS" />
-      <span className="text-xs font-bold text-sale">:</span>
+      <span className="text-xs font-bold text-foreground">:</span>
       <TimeBlock value={display.minutes} label="MIN" />
-      <span className="text-xs font-bold text-sale">:</span>
+      <span className="text-xs font-bold text-foreground">:</span>
       <TimeBlock value={display.seconds} label="SEC" />
     </div>
   )
