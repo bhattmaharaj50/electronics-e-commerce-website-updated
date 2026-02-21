@@ -11658,5 +11658,6 @@ export const products: Product[] = [
     flashSale: false,
     dealOfDay: false,
   }
+  ];
 
 
