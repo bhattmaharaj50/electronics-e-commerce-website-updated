@@ -11667,5 +11667,7 @@ export function filterProducts(products, options = {}) {
     return true;
   });
 }
-
+export function formatPrice(value: number): string {
+  return `KES ${value.toLocaleString()}`;
+}
 
