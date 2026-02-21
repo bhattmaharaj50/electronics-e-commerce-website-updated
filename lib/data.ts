@@ -11659,5 +11659,13 @@ export const products: Product[] = [
     dealOfDay: false,
   }
   ];
+export function filterProducts(products, options = {}) {
+  return products.filter((p) => {
+    if (options.category && p.category !== options.category) return false;
+    if (options.search && !p.name.toLowerCase().includes(options.search.toLowerCase())) return false;
+    if (options.maxPrice != null && p.price > options.maxPrice) return false;
+    return true;
+  });
+}
 
 
